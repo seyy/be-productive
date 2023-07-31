@@ -1,11 +1,12 @@
 import React, { useLayoutEffect } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { TabStackParamlist } from '../navigator/TabNavigator';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigator/RootNavigator';
+import GoBack from '../components/GoBack';
 
 interface registerFormData {
   username: string;
@@ -45,6 +46,7 @@ const Register = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+    <GoBack />
       <Text style={styles.textRegister}>Sign Up for be<Text style={styles.pro}>Pro</Text>ductive</Text>
       <Controller
         control={control}

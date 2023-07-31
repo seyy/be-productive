@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react'
-import { ScrollView, Text } from 'react-native'
+import { ScrollView } from 'react-native'
 import { useNavigation, CompositeNavigationProp } from '@react-navigation/native' 
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { TabStackParamlist } from '../navigator/TabNavigator'

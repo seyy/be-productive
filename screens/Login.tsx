@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { Text, SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
@@ -6,6 +6,7 @@ import { TabStackParamlist } from '../navigator/TabNavigator';
 import { RootStackParamList } from '../navigator/RootNavigator';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import GoBack from '../components/GoBack';
 
 interface loginFormData {
   username: string;
@@ -41,6 +42,7 @@ const Login = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+    <GoBack />
       <Text style={styles.textLogin}>Log in to be<Text style={styles.pro}>Pro</Text>ductive</Text>
       <Controller
         control={control}
