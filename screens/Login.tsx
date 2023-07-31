@@ -1,14 +1,25 @@
 import { View, Text, SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form';
-
+import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
+import { TabStackParamlist } from '../navigator/TabNavigator';
+import { RootStackParamList } from '../navigator/RootNavigator';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface loginFormData {
   username: string;
   password: string;
 }
 
+export type LoginNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<TabStackParamlist, 'Home'>,
+  NativeStackNavigationProp<RootStackParamList>
+>
+
 const Login = () => {
+  const navigation = useNavigation<LoginNavigationProp>()
+
   const {
     control,
     handleSubmit,
@@ -19,12 +30,18 @@ const Login = () => {
       password: "",
     },
   })
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    })
+  })
   
   const onSubmit = (data: loginFormData) => console.log(data)
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.textLogin}>Log in to beProductive</Text>
+      <Text style={styles.textLogin}>Log in to be<Text style={styles.pro}>Pro</Text>ductive</Text>
       <Controller
         control={control}
         rules={{
@@ -72,7 +89,9 @@ const Login = () => {
           SIGN IN
         </Text>
       </TouchableOpacity>
-        <Text style={styles.joinText}>No account? Join us</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+        <Text style={styles.joinText}>No account? Join <Text style={styles.pro}>Us</Text></Text>
+      </TouchableOpacity>
     </SafeAreaView>
   )
 }
@@ -82,22 +101,22 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'black', // Background color for the whole website
+    backgroundColor: 'black', 
   },
   textLogin: {
     color: 'white',
     fontWeight: '500',
     fontSize: 28,
-    marginBottom: 20, // Adjusted the margin to look better
+    marginBottom: 20, 
   },
   input: {
-    backgroundColor: 'lightgray', // Changed input background color to light gray
+    backgroundColor: 'lightgray', 
     borderRadius: 25,
     width: 300,
-    height: 44, // Increased the height for better visibility
-    paddingHorizontal: 15, // Added some padding to the input text
-    marginBottom: 10, // Adjusted the margin to look better
-    color: 'black', // Text color for the input
+    height: 44, 
+    paddingHorizontal: 15,
+    marginBottom: 10, 
+    color: 'black', 
   },
   button: {
     backgroundColor: '#831fe0',
@@ -106,7 +125,7 @@ export const styles = StyleSheet.create({
     height: 44,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20, // Adjusted the margin to look better
+    marginTop: 20, 
   },
   text: {
     color: 'white',
@@ -114,8 +133,8 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
   },
   errorText: {
-    color: '#FF0000', // Red color for error text
-    marginBottom: 10, // Adjusted the margin to look better
+    color: '#FF0000', 
+    marginBottom: 10, 
   },
   joinLink: {
     marginTop: 10,
@@ -124,7 +143,11 @@ export const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
     fontWeight: '500',
+    marginTop: 12
   },
+  pro: {
+    color: '#831fe0'
+  }
 })
 
 export default Login;

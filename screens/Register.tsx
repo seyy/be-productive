@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
+import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
+import { TabStackParamlist } from '../navigator/TabNavigator';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigator/RootNavigator';
 
 interface registerFormData {
   username: string;
@@ -8,8 +13,14 @@ interface registerFormData {
   password: string;
 }
 
+export type RegisterNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<TabStackParamlist, 'Home'>,
+  NativeStackNavigationProp<RootStackParamList>
+>
 
 const Register = () => {
+  const navigation = useNavigation<RegisterNavigationProp>()
+
   const {
     control,
     handleSubmit,
@@ -22,6 +33,11 @@ const Register = () => {
     },
   });
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    })
+  })
 
 
 
@@ -29,7 +45,7 @@ const Register = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.textRegister}>Sign Up for beProductive</Text>
+      <Text style={styles.textRegister}>Sign Up for be<Text style={styles.pro}>Pro</Text>ductive</Text>
       <Controller
         control={control}
         rules={{
@@ -96,8 +112,8 @@ const Register = () => {
         <Text style={styles.text}>SIGN UP</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.signInLink}>
-        <Text style={styles.signInText}>Already a member? Sign in</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.signInLink}>
+        <Text style={styles.signInText}>Already a member? Sign <Text style={styles.pro}>In</Text></Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -147,11 +163,13 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   signInText: {
-    color: '#4f2f6d',
+    color: 'white',
     fontSize: 16,
     fontWeight: '500',
-    textDecorationLine: 'underline',
   },
+  pro: {
+    color: '#831fe0'
+  }
 });
 
-export default Register;
+export default Register
