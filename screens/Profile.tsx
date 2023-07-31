@@ -5,6 +5,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { TabStackParamlist } from '../navigator/TabNavigator'
 import { RootStackParamList } from '../navigator/RootNavigator'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import Login from './Login'
 
 export type ProfileNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabStackParamlist, 'Home'>,
@@ -22,6 +23,7 @@ const Home = () => {
 
   return (
     <ScrollView style={{backgroundColor: 'black'}}>
+      <Login />
     </ScrollView>
   )
 }

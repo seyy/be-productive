@@ -12,6 +12,7 @@ export type TabStackParamlist = {
   Profile: undefined;
   Home: undefined;
   Calendar: undefined;
+  Register: undefined;
 };
 
 const Tab = createBottomTabNavigator();
@@ -48,7 +49,7 @@ const TabNavigator = () => {
             );
           } else 
             return (
-              <Feather name="plus-circle" size={43} color={focused ? '#831fe0' : 'gray'} />
+              <Feather name="plus-circle" size={49} color={focused ? '#831fe0' : 'gray'} />
             );
           }
       })}
