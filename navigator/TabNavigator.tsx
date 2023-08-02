@@ -25,34 +25,35 @@ const TabNavigator = () => {
     navigation.setOptions({
       headerShown: false,
     });
-  }, []); // Pass an empty array as the second argument to useLayoutEffect
+  }, []);
 
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarStyle: { backgroundColor: 'black', height: 54, border: 'none'},
+        tabBarStyle: { backgroundColor: 'black', height: 54 },
         tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
           if (route.name === 'Home') {
-            return (
-              <Feather name="home" size={24} color={focused ? theme.colors.purple.dark : theme.colors.grey} />
-            );
+            iconName = 'home';
           } else if (route.name === 'Calendar') {
-            return (
-              <Feather name="calendar" size={24} color={focused ? theme.colors.purple.dark : theme.colors.grey} />
-            );
+            iconName = 'calendar';
           } else if (route.name === 'Profile') {
-            return (
-              <Feather name="user" size={24} color={focused ? theme.colors.purple.dark : theme.colors.grey} />
-            );
+            iconName = 'user';
           } else if (route.name === 'Timer') {
-            return (
-              <Feather name="clock" size={24} color={focused ? theme.colors.purple.dark : theme.colors.grey} />
-            );
-          } else 
-            return (
-              <Feather name="plus-circle" size={49} color={focused ? theme.colors.purple.dark : theme.colors.grey} />
-            );
+            iconName = 'clock';
+          } else {
+            iconName = 'plus-circle';
           }
+
+          return (
+            <Feather
+              name={iconName}
+              size={route.name === 'AddTask' ? 49 : 24}
+              color={focused ? theme.colors.purple.dark : theme.colors.grey}
+            />
+          );
+        },
       })}
       tabBarOptions={{
         showLabel: false,
