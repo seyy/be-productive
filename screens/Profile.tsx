@@ -6,6 +6,7 @@ import { TabStackParamlist } from '../navigator/TabNavigator'
 import { RootStackParamList } from '../navigator/RootNavigator'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import Login from './Login'
+import { theme } from '../constants/theme'
 
 export type ProfileNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabStackParamlist, 'Home'>,
@@ -30,8 +31,8 @@ const Home = () => {
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
-  }
+    backgroundColor: theme.colors.black,
+  },
 })
 
 export default Home

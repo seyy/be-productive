@@ -1,12 +1,13 @@
 import React, { useLayoutEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profile from '../screens/Profile';
-import Calendar from '../screens/Calendar';
-import Home from '../screens/Home';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import Timer from '../screens/Timer';
 import AddTask from '../screens/AddTask';
+import Profile from '../screens/Profile';
+import Calendar from '../screens/Calendar';
+import Home from '../screens/Home';
+import { theme } from '../constants/theme';
 
 export type TabStackParamlist = {
   Profile: undefined;
@@ -33,23 +34,23 @@ const TabNavigator = () => {
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === 'Home') {
             return (
-              <Feather name="home" size={24} color={focused ? '#831fe0' : 'gray'} />
+              <Feather name="home" size={24} color={focused ? theme.colors.purple.dark : theme.colors.grey} />
             );
           } else if (route.name === 'Calendar') {
             return (
-              <Feather name="calendar" size={24} color={focused ? '#831fe0' : 'gray'} />
+              <Feather name="calendar" size={24} color={focused ? theme.colors.purple.dark : theme.colors.grey} />
             );
           } else if (route.name === 'Profile') {
             return (
-              <Feather name="user" size={24} color={focused ? '#831fe0' : 'gray'} />
+              <Feather name="user" size={24} color={focused ? theme.colors.purple.dark : theme.colors.grey} />
             );
           } else if (route.name === 'Timer') {
             return (
-              <Feather name="clock" size={24} color={focused ? '#831fe0' : 'gray'} />
+              <Feather name="clock" size={24} color={focused ? theme.colors.purple.dark : theme.colors.grey} />
             );
           } else 
             return (
-              <Feather name="plus-circle" size={49} color={focused ? '#831fe0' : 'gray'} />
+              <Feather name="plus-circle" size={49} color={focused ? theme.colors.purple.dark : theme.colors.grey} />
             );
           }
       })}

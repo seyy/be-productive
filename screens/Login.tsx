@@ -7,16 +7,17 @@ import { RootStackParamList } from '../navigator/RootNavigator';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import GoBack from '../components/GoBack';
-
-interface loginFormData {
-  username: string;
-  password: string;
-}
+import { theme } from '../constants/theme'
 
 export type LoginNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabStackParamlist, 'Home'>,
   NativeStackNavigationProp<RootStackParamList>
 >
+
+interface loginFormData {
+  username: string;
+  password: string;
+}
 
 const Login = () => {
   const navigation = useNavigation<LoginNavigationProp>()
@@ -82,7 +83,7 @@ const Login = () => {
         )}
         name="password"
       />
-
+      {errors.password && <Text style={styles.errorText}>This is required.</Text>}
       <TouchableOpacity
         onPress={handleSubmit(onSubmit)}
         style={styles.button}
@@ -103,25 +104,25 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'black', 
+    backgroundColor: theme.colors.black, 
   },
   textLogin: {
-    color: 'white',
+    color: theme.colors.white,
     fontWeight: '500',
     fontSize: 28,
-    marginBottom: 20, 
+    marginBottom: 20,
   },
   input: {
-    backgroundColor: 'lightgray', 
+    backgroundColor: theme.colors.grey, 
     borderRadius: 25,
     width: 300,
     height: 44, 
     paddingHorizontal: 15,
     marginBottom: 10, 
-    color: 'black', 
+    color: theme.colors.black, 
   },
   button: {
-    backgroundColor: '#831fe0',
+    backgroundColor: theme.colors.purple.dark,
     borderRadius: 25,
     width: 300,
     height: 44,
@@ -130,7 +131,7 @@ export const styles = StyleSheet.create({
     marginTop: 20, 
   },
   text: {
-    color: 'white',
+    color: theme.colors.white,
     fontSize: 20,
     fontWeight: '500',
   },
@@ -142,14 +143,14 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   joinText: {
-    color: '#ffffff',
+    color: theme.colors.white,
     fontSize: 16,
     fontWeight: '500',
     marginTop: 12
   },
   pro: {
-    color: '#831fe0'
-  }
+    color: theme.colors.purple.dark,
+  },
 })
 
 export default Login;
