@@ -46,7 +46,7 @@ const AddTask = () => {
   return (
     <SafeAreaView style={styles.container}>
       <GoBack />
-      <Text style={styles.text}>Add a Task</Text>
+      <Text style={styles.text}>Add a New Task</Text>
 
       <Controller
         control={control}

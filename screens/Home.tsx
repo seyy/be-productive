@@ -7,6 +7,9 @@ import { RootStackParamList } from '../navigator/RootNavigator'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { theme } from '../constants/theme'
 import QuestionButton from '../components/QuestionButton'
+import Tasks from '../components/home/Tasks'
+import { tasks } from '../assets/mocks'
+import { Moon } from 'react-native-feather'
 
 export type HomeNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabStackParamlist, 'Home'>,
@@ -28,8 +31,10 @@ const Home = () => {
         <QuestionButton />
         <ScrollView>
           <Text style={styles.text}>be<Text style={styles.pro}>Pro</Text>ductive</Text>
+          <Tasks />
         </ScrollView>
       </View>
+      <Text style={styles.reminderTextTasks}>You have got {tasks.length} tasks to complete</Text>
     </SafeAreaView>
   )
 }
@@ -46,6 +51,7 @@ export const styles = StyleSheet.create({
     fontSize: 45
   },
   container: {
+    padding: 12,
     backgroundColor: theme.colors.black,
     flex: 1,
     justifyContent: 'center',
@@ -56,6 +62,13 @@ export const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center'
   },
+  reminderTextTasks: {
+    color: 'white',
+    fontSize: 22,
+    marginBottom: 185,
+    fontStyle: 'italic',
+    fontWeight: '500'
+  }
 })
 
 export default Home
